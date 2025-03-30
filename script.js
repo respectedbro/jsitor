@@ -23,6 +23,20 @@ const handleInput = () => {
   content.classList.remove("clear");
   footer.classList.remove("clear");
   footer.classList.add("moved");
+
+  fetch('"https://intensive-backend-technium.replit.app/ask"')
+    .then((r) => {
+      if (!r.ok) {
+        throw new Error("Ошибка" + r.statusText);
+      }
+      return r.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log("Произошла ошибка");
+    });
 };
 
 button.addEventListener("click", handleInput);
