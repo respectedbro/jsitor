@@ -10,14 +10,25 @@ const getUserMessageHtml = (text) => {
             </div>`;
 };
 
-button.addEventListener("click", () => {
-  const inpValue = input.value;
+const handleInput = () => {
+  const inpValue = input.value.trim();
+
+  if (inpValue === "") {
+    return;
+  }
+
   if (inpValue) dialog.innerHTML += getUserMessageHtml(inpValue);
   input.value = "";
 
   content.classList.remove("clear");
   footer.classList.remove("clear");
   footer.classList.add("moved");
-});
+};
 
-console.log(button);
+button.addEventListener("click", handleInput);
+
+input.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    handleInput();
+  }
+});
